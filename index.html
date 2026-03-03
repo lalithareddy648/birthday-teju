@@ -58,6 +58,24 @@ h1 {
 @keyframes blink {
   50% { background: transparent; }
 }
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  top: 0;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 9999;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
 </style>
 </head>
 
@@ -73,7 +91,7 @@ h1 {
 let tapCount = 0;
 
 document.addEventListener("click", function(e) {
-
+  // Flower animation
   if (tapCount < 5) {
     let flower = document.createElement("div");
     flower.className = "flower";
@@ -81,19 +99,23 @@ document.addEventListener("click", function(e) {
     flower.style.left = e.clientX + "px";
     flower.style.top = e.clientY + "px";
     document.body.appendChild(flower);
-
     setTimeout(() => flower.remove(), 2000);
-    tapCount++;
   }
 
+  tapCount++;
+
   if (tapCount === 5) {
+    // Hide title and show hacker screen
     document.body.style.background = "black";
     document.getElementById("title").style.display = "none";
     document.getElementById("hackerScreen").style.display = "block";
+
+    // Start typing messages
     startTyping();
   }
 });
 
+// Hacker screen messages
 let messages = [
 "> Accessing Special Person Database...",
 "> Loading Profile: Teju 🥰",
@@ -123,6 +145,23 @@ function startTyping() {
       i++;
       setTimeout(startTyping, 500);
     }
+  } else {
+    // When all messages are done, trigger confetti
+    launchConfetti();
+  }
+}
+
+// Confetti effect
+function launchConfetti() {
+  const colors = ["#ff0a54","#ff477e","#ff7096","#ff85a1","#fbb1b1","#f9bec7","#f7cad0"];
+  for(let i=0; i<150; i++) {
+    let confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+    confetti.style.animationDuration = 2 + Math.random() * 2 + "s";
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 4000);
   }
 }
 </script>
