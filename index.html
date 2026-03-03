@@ -1,131 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Happy Birthday Teju 🥰</title>
+    <title>Happy Birthday Teju</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+        }
 
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-  font-family: monospace;
-  background: linear-gradient(135deg,#ffb6ec,#c8a2ff,#a0e7ff);
-  text-align: center;
-  color: white;
-}
+        h1 {
+            font-size: 50px;
+            color: white;
+            text-shadow: 
+                0 0 10px #fff,
+                0 0 20px #ff4da6,
+                0 0 30px #ff4da6,
+                0 0 40px #ff1a75;
+            animation: glow 1.5s infinite alternate;
+        }
 
-/* Glowing Heading */
-h1 {
-  margin-top: 40px;
-  font-size: 40px;
-  text-shadow: 0 0 15px pink, 0 0 30px violet, 0 0 50px white;
-  animation: glow 2s infinite alternate;
-}
+        p {
+            font-size: 20px;
+            color: white;
+        }
 
-@keyframes glow {
-  from { text-shadow: 0 0 15px pink; }
-  to { text-shadow: 0 0 40px violet, 0 0 60px white; }
-}
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px #fff,
+                    0 0 20px #ff4da6,
+                    0 0 30px #ff4da6;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #fff,
+                    0 0 30px #ff1a75,
+                    0 0 40px #ff1a75;
+            }
+        }
 
-/* Flower Animation */
-.flower {
-  position: absolute;
-  font-size: 30px;
-  animation: bloom 1s ease-out forwards;
-}
+        .button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background-color: white;
+            color: #ff4da6;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+        }
 
-@keyframes bloom {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1.6); opacity: 1; }
-}
-
-/* Hacker Screen */
-#hackerScreen {
-  display: none;
-  background: black;
-  color: #00ff99;
-  height: 100vh;
-  padding: 80px 20px;
-  font-size: 18px;
-}
-
-.cursor {
-  display: inline-block;
-  width: 10px;
-  background: #00ff99;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  50% { background: transparent; }
-}
-</style>
+        .button:hover {
+            background-color: #ff4da6;
+            color: white;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1 id="title">Tap 5 Times to Unlock Something Special 🌸</h1>
+    <div>
+        <h1>Happy Birthday Teju 💖</h1>
+        <p>
+            You are the person who teaches me new things ✨<br>
+            You support me in all situations 🤍<br><br>
+            Thank you for being my strength 🌸<br><br>
+            — From your lovely Pandhi 🐼💌
+        </p>
 
-<div id="hackerScreen">
-  <div id="text"></div><span class="cursor"></span>
-</div>
+        <button class="button" onclick="playMusic()">Click Here for Surprise 🎵</button>
+    </div>
 
-<script>
-let tapCount = 0;
+    <audio id="bgMusic" loop>
+        <source src="sitaramam.mp3" type="audio/mpeg">
+    </audio>
 
-document.addEventListener("click", function(e) {
-
-  if (tapCount < 5) {
-    let flower = document.createElement("div");
-    flower.className = "flower";
-    flower.innerHTML = "🌸";
-    flower.style.left = e.clientX + "px";
-    flower.style.top = e.clientY + "px";
-    document.body.appendChild(flower);
-
-    setTimeout(() => flower.remove(), 2000);
-    tapCount++;
-  }
-
-  if (tapCount === 5) {
-    document.body.style.background = "black";
-    document.getElementById("title").style.display = "none";
-    document.getElementById("hackerScreen").style.display = "block";
-    startTyping();
-  }
-});
-
-let messages = [
-"> Accessing Special Person Database...",
-"> Loading Profile: Teju 🥰",
-"> Role: My Support System 💖",
-"> Status: Teaches Me New Things Everyday 📚",
-"> Strength: Supports Me In Every Situation 🤝",
-"> Final Message Incoming...",
-"> 🎉 HAPPY BIRTHDAY TEJU 🎉",
-"> You are one of the strongest and kindest people I know.",
-"> Thank you for always guiding and supporting me.",
-"> I’m lucky to have you in my life 💖✨",
-"> — From your lovely Pandhi 🥰"
-];
-
-let i = 0;
-let j = 0;
-
-function startTyping() {
-  if (i < messages.length) {
-    if (j < messages[i].length) {
-      document.getElementById("text").innerHTML += messages[i].charAt(j);
-      j++;
-      setTimeout(startTyping, 40);
-    } else {
-      document.getElementById("text").innerHTML += "<br>";
-      j = 0;
-      i++;
-      setTimeout(startTyping, 500);
-    }
-  }
-}
-</script>
+    <script>
+        function playMusic() {
+            document.getElementById("bgMusic").play();
+            alert("Surprise 🎉💖 Close this and enjoy the music!");
+        }
+    </script>
 
 </body>
 </html>
