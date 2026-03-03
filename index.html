@@ -69,16 +69,11 @@ h1 {
   <div id="text"></div><span class="cursor"></span>
 </div>
 
-<!-- Background Music -->
-<audio id="bgMusic" loop>
-    <source src="sitaramam.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 let tapCount = 0;
 
 document.addEventListener("click", function(e) {
-  // Flower Animation
+
   if (tapCount < 5) {
     let flower = document.createElement("div");
     flower.className = "flower";
@@ -86,41 +81,19 @@ document.addEventListener("click", function(e) {
     flower.style.left = e.clientX + "px";
     flower.style.top = e.clientY + "px";
     document.body.appendChild(flower);
+
     setTimeout(() => flower.remove(), 2000);
+    tapCount++;
   }
 
-  tapCount++;
-
   if (tapCount === 5) {
-    // Play secret music
-    document.getElementById("bgMusic").play();
-
-    // Hide title and show hacker screen
     document.body.style.background = "black";
     document.getElementById("title").style.display = "none";
     document.getElementById("hackerScreen").style.display = "block";
-
-    // Optional on-screen message
-    const msg = document.createElement("div");
-    msg.innerText = "🎵 Secret music unlocked for Teju 💖";
-    msg.style.position = "fixed";
-    msg.style.top = "20px";
-    msg.style.left = "50%";
-    msg.style.transform = "translateX(-50%)";
-    msg.style.background = "pink";
-    msg.style.padding = "10px 20px";
-    msg.style.borderRadius = "10px";
-    msg.style.boxShadow = "0 0 10px white";
-    msg.style.fontSize = "18px";
-    document.body.appendChild(msg);
-    setTimeout(() => msg.remove(), 3000);
-
-    // Start typing messages
     startTyping();
   }
 });
 
-// Hacker screen messages
 let messages = [
 "> Accessing Special Person Database...",
 "> Loading Profile: Teju 🥰",
