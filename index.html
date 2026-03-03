@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday Teju 🥰</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: monospace;
+  background: linear-gradient(135deg,#ffb6ec,#c8a2ff,#a0e7ff);
+  text-align: center;
+  color: white;
+}
+
+/* Glowing Heading */
+h1 {
+  margin-top: 40px;
+  font-size: 40px;
+  text-shadow: 0 0 15px pink, 0 0 30px violet, 0 0 50px white;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 15px pink; }
+  to { text-shadow: 0 0 40px violet, 0 0 60px white; }
+}
+
+/* Flower Animation */
+.flower {
+  position: absolute;
+  font-size: 30px;
+  animation: bloom 1s ease-out forwards;
+}
+
+@keyframes bloom {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 1; }
+}
+
+/* Hacker Screen */
+#hackerScreen {
+  display: none;
+  background: black;
+  color: #00ff99;
+  height: 100vh;
+  padding: 80px 20px;
+  font-size: 18px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  background: #00ff99;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { background: transparent; }
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="title">Tap 5 Times to Unlock Something Special 🌸</h1>
+
+<div id="hackerScreen">
+  <div id="text"></div><span class="cursor"></span>
+</div>
+
+<script>
+let tapCount = 0;
+
+document.addEventListener("click", function(e) {
+
+  if (tapCount < 5) {
+    let flower = document.createElement("div");
+    flower.className = "flower";
+    flower.innerHTML = "🌸";
+    flower.style.left = e.clientX + "px";
+    flower.style.top = e.clientY + "px";
+    document.body.appendChild(flower);
+
+    setTimeout(() => flower.remove(), 2000);
+    tapCount++;
+  }
+
+  if (tapCount === 5) {
+    document.body.style.background = "black";
+    document.getElementById("title").style.display = "none";
+    document.getElementById("hackerScreen").style.display = "block";
+    startTyping();
+  }
+});
+
+let messages = [
+"> Accessing Special Person Database...",
+"> Loading Profile: Teju 🥰",
+"> Role: My Support System 💖",
+"> Status: Teaches Me New Things Everyday 📚",
+"> Strength: Supports Me In Every Situation 🤝",
+"> Final Message Incoming...",
+"> 🎉 HAPPY BIRTHDAY TEJU 🎉",
+"> You are one of the strongest and kindest people I know.",
+"> Thank you for always guiding and supporting me.",
+"> I’m lucky to have you in my life 💖✨",
+"> — From your lovely Pandhi 🥰"
+];
+
+let i = 0;
+let j = 0;
+
+function startTyping() {
+  if (i < messages.length) {
+    if (j < messages[i].length) {
+      document.getElementById("text").innerHTML += messages[i].charAt(j);
+      j++;
+      setTimeout(startTyping, 40);
+    } else {
+      document.getElementById("text").innerHTML += "<br>";
+      j = 0;
+      i++;
+      setTimeout(startTyping, 500);
+    }
+  }
+}
+</script>
+
+</body>
+</html>
